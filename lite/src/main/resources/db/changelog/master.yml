@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      relativeToChangelogFile: true
+      file: initial.sql
+  - include:
+      relativeToChangelogFile: true
+      file: v0.1.sql
+  - include:
+      relativeToChangelogFile: true
+      file: v0.2.sql
+  - include:
+      relativeToChangelogFile: true
+      file: v0.3.sql
+  - include:
+      relativeToChangelogFile: true
+      file: v0.4.sql
+
