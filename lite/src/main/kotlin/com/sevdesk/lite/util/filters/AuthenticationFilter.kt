@@ -3,7 +3,6 @@ package com.sevdesk.lite.util.filters
 import com.sevdesk.lite.user.UserService
 import com.sevdesk.lite.util.jwt.JwtTokenUtil
 import org.apache.catalina.connector.RequestFacade
-import org.springframework.stereotype.Component
 import org.springframework.web.context.request.RequestAttributes
 import org.springframework.web.context.request.RequestContextHolder
 import javax.servlet.Filter
@@ -23,7 +22,7 @@ class AuthenticationFilter(private val jwtTokenUtil: JwtTokenUtil, private val u
             return
         }
 
-        val userId = jwtTokenUtil.validateToken(authHeader.substring(7))
+        val userId = jwtTokenUtil.getUserIdFromToken(authHeader.substring(7))
 
         if (userId == null) {
             response.status = 401

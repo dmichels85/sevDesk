@@ -5,12 +5,10 @@ import com.sevdesk.lite.exceptions.ConflictException
 import com.sevdesk.lite.exceptions.NotFoundException
 import com.sevdesk.lite.user.entities.User
 import com.sevdesk.lite.util.jwt.JwtTokenUtil
-import org.hibernate.exception.ConstraintViolationException
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.stereotype.Service
-import java.util.UUID
 
 @Service
 class UserService(val userRepository: UserRepository, val jwtTokenUtil: JwtTokenUtil) {
@@ -42,6 +40,6 @@ class UserService(val userRepository: UserRepository, val jwtTokenUtil: JwtToken
         if (!BCrypt.checkpw(password, user.passwordHash))
             throw AuthenticationException()
 
-        return jwtTokenUtil.doGenerateToken(user.id!!)
+        return jwtTokenUtil.createToken(user.id!!)
     }
 }
